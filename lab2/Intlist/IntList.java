@@ -81,8 +81,15 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        if (A == null) {
+            return B;
+        }
+        if (A.rest == null){
+            A.rest = B;
+            return A;
+        }
+        A.rest = dcatenate(A.rest, B);
+        return A;
     }
 
     /**
@@ -90,10 +97,67 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
-    }
+//        IntList C = new IntList();
+//        if (A == null && B == null) return null;
+//
+//        if (A == null && B != null) {
+//            if (B.rest == null) {
+//                C = new IntList(B.first, null);
+//                return C;
+//            }
+//            C = new IntList(B.first, catenate(null, B.rest));
+//            return C;
+//        }
+//
+//
+//        if (A != null && B == null) {
+//            if (A.rest == null) {
+//                C = new IntList(A.first, null);
+//                return C;
+//            }
+//            C = new IntList(A.first, catenate(A.rest, null));
+//            return C;
+//        }
 
+        IntList C = new IntList();
+        IntList D = C;
+
+        while(A != null){
+            C.first = A.first;
+            C.rest = new IntList();
+            A = A.rest;
+            C = C.rest;
+        }
+
+        while(B != null){
+            C.first = B.first;
+            if(B.rest == null) break;
+            C.rest = new IntList();
+            B = B.rest;
+            C = C.rest;
+        }
+
+        return D;
+
+
+//        if (A != null && B != null) {
+//
+//            if (B.rest == null) {
+//                C = new IntList(B.first, null);
+//                return C;
+//            }
+//            return new IntList(B.first, catenate(A, B.rest));
+//
+
+//            if (A.rest == null) {
+//                C = new IntList(A.first, C);
+//                return C;
+//            }
+//            C = new IntList(A.first, catenate(A.rest, B));
+
+//        }
+//    return C;
+    }
 
 
 
